@@ -22,9 +22,27 @@ class SizerDemo extends StatelessWidget {
 
                 child: ClipPath(
                   clipBehavior: Clip.hardEdge,
-                  clipper: RPSCustomPainter(),
+                  clipper: CustomClipperr(),
                   child: Container(
                     color: Colors.blue, // The clipped widget
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                                flex:4,
+                                child: Container(color: Colors.red,)),
+                            Expanded(
+                              flex: 8,
+                              child: Text(
+                                "hello",style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -36,7 +54,7 @@ class SizerDemo extends StatelessWidget {
   }
 }
 
-class RPSCustomPainter extends CustomClipper<Path> {
+class CustomClipperr extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     Path path_0 = Path();
@@ -53,6 +71,6 @@ class RPSCustomPainter extends CustomClipper<Path> {
 
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
-    return false; // Always reclip when widget updates
+    return false;
   }
 }
